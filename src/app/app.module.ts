@@ -8,6 +8,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {GameModule} from "./game/game.module";
+import {StoreModule} from "@ngrx/store";
+import {metaReducers, reducers, storeStateKey} from "./redux-store";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {GameModule} from "./game/game.module";
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    GameModule
+    GameModule,
+    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forFeature(storeStateKey,reducers),
   ],
   providers: [],
   exports: [],
