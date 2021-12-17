@@ -5,10 +5,12 @@ import {GameToolbarComponent} from "./components/game-toolbar/game-toolbar.compo
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
-import { SidePanelComponent } from './components/side-panel/side-panel.component';
-import { MainScreenComponent } from './components/main-screen/main-screen.component';
-import {StoreModule} from "@ngrx/store";
-import {reducers, storeStateKey} from "../redux-store";
+import {MainScreenComponent} from "./components/main-screen/main-screen.component";
+import {SidePanelComponent} from "./components/side-panel/side-panel.component";
+import { BuildingComponent } from './economy-management/components/building/building.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { EconomyScreenComponent } from './economy-management/components/economy-screen/economy-screen.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 
@@ -17,13 +19,17 @@ import {reducers, storeStateKey} from "../redux-store";
     GameComponent,
     GameToolbarComponent,
     SidePanelComponent,
-    MainScreenComponent
+    MainScreenComponent,
+    BuildingComponent,
+    EconomyScreenComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
+    MatTabsModule,
+    MatGridListModule,
   ],
   exports: [
     GameToolbarComponent
