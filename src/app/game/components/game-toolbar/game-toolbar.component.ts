@@ -8,7 +8,7 @@ import {StoreState} from "../../../redux-store/models/store-state";
 @Component({
   selector: 'app-game-toolbar',
   templateUrl: './game-toolbar.component.html',
-  styleUrls: ['./game-toolbar.component.css']
+  styleUrls: ['./game-toolbar.component.scss']
 })
 export class GameToolbarComponent implements OnInit, OnDestroy {
 

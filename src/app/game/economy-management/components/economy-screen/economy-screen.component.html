@@ -1,0 +1,5 @@
+<mat-grid-list [cols]="columns">
+  <mat-grid-tile *ngFor="let building of buildings">
+    <app-building [building]="building"></app-building>
+  </mat-grid-tile>
+</mat-grid-list>
