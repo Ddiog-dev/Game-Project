@@ -11,6 +11,9 @@ export class BuildingComponent implements OnInit {
   @Input()
   building!: Building;
 
+  @Input()
+  sidePanelView: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,10 @@
-<p>{{building.name}}</p>
-<p>{{building.description}}</p>
-<p>{{building.income}}</p>
+<div *ngIf="!sidePanelView" class="building-decoration">
+  <p>Name: {{building.name}}</p>
+  <p>Description: {{building.description}}</p>
+  <p>Income: {{building.tier.income}}</p>
+  <p>Current tier: {{building.tier.tier}}</p>
+  <p>Income type: {{building.tier.incomeType}}</p>
+</div>
+
+
 

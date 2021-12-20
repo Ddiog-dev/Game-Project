@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Building} from "../../models/building";
-import {BuildingTier} from "../../models/building-tier";
+import {BuildingService} from "../../services/building.service";
 
 @Component({
   selector: 'app-economy-screen',
@@ -13,12 +13,14 @@ export class EconomyScreenComponent implements OnInit {
 
   columns: number = 0;
 
-  constructor() { }
+  constructor(private buildingService: BuildingService) { }
 
   ngOnInit(): void {
-    const building: Building  = {description: "desc", income: 0, name: "test building", nextTiers: [], tier: {} as BuildingTier};
-    this.buildings = [building, building, building,building];
-    this.columns = 2;
+    this.buildings = this.buildingService.getBuildings();
+    this.updateColumnsNumbers();
   }
 
+  updateColumnsNumbers(){
+    this.columns = Math.ceil(Math.sqrt(this.buildings.length));
+  }
 }
