@@ -1,5 +1,4 @@
-$main-screen-width: 85%;
-$toolbar-height: 7%;
+@import 'src/app/app.component.scss';
 
 .game-screen{
   display: flex;

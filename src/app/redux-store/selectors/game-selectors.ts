@@ -8,3 +8,4 @@ export const selectState = createFeatureSelector<StoreState>(
 
 
 export const goldSelector = createSelector(selectState,(state: StoreState) => state.gold);
+export const incomeSelector = createSelector(selectState,(state: StoreState) => state.income);
