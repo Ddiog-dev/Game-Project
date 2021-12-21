@@ -14,8 +14,12 @@ export class BuildingService {
   }
 
   getBuildings(): Building[] {
-    const tier: BuildingTier = {description: 0, income: 1, incomeType: IncomeType.GOLD, tier: 0};
-    const building: Building = {description: "desc", name: "test building", nextTiers: [], tier: tier};
-    return [building, building, building, building, building, building, building, building, building];
+    return [
+      {description: "desc 1", name: "test building 1", nextTiers: [{description: '', income: 2, incomeType: IncomeType.MANA, tier: 1, cost: 1},{description: '', income: 2, incomeType: IncomeType.GOLD, tier: 1, cost: 2}], tier: {description: '', income: 1, incomeType: IncomeType.GOLD, tier: 0, cost: 1}},
+      {description: "desc 2", name: "test building 2", nextTiers: [{description: '', income: 2, incomeType: IncomeType.MANA, tier: 1, cost: 1}], tier: {description: '', income: 1, incomeType: IncomeType.GOLD, tier: 0, cost: 1}},
+      {description: "desc 3", name: "test building 3", nextTiers: [{description: '', income: 2, incomeType: IncomeType.MANA, tier: 1, cost: 1}], tier: {description: '', income: 1, incomeType: IncomeType.GOLD, tier: 0, cost: 1}},
+      {description: "desc 4", name: "test building 4", nextTiers: [{description: '', income: 2, incomeType: IncomeType.MANA, tier: 1, cost: 1}], tier: {description: '', income: 1, incomeType: IncomeType.GOLD, tier: 0, cost: 1}},
+      {description: "desc 5", name: "test building 5", nextTiers: [{description: '', income: 2, incomeType: IncomeType.MANA, tier: 1, cost: 1}], tier: {description: '', income: 1, incomeType: IncomeType.GOLD, tier: 0, cost: 1}},
+      {description: "desc 6", name: "test building 6", nextTiers: [{description: '', income: 2, incomeType: IncomeType.MANA, tier: 1, cost: 1}], tier: {description: '', income: 1, incomeType: IncomeType.GOLD, tier: 0, cost: 1}},];
   }
 }

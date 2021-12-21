@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Building} from "../../models/building";
 import {BuildingService} from "../../services/building.service";
 import {Store} from "@ngrx/store";
-import {addIncome, resetIncome} from "../../../../redux-store/actions/game-actions";
 import {StoreState} from "../../../../redux-store/models/store-state";
+import {StoreUtil} from "../../../../utils/store-util";
+import {resetGoldIncome} from "../../../../redux-store/actions/gold/income-actions";
 
 @Component({
   selector: 'app-economy-screen',
@@ -19,10 +20,10 @@ export class EconomyScreenComponent implements OnInit {
   constructor(private buildingService: BuildingService, private store: Store<StoreState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch(resetIncome())
+    this.store.dispatch(resetGoldIncome())
     this.buildings = this.buildingService.getBuildings();
     this.updateColumnsNumbers();
-    this.buildings.forEach(building => this.store.dispatch(addIncome({amount:building.tier.income})))
+    this.buildings.forEach(building =>StoreUtil.addIncome(this.store, building));
   }
 
   updateColumnsNumbers(){

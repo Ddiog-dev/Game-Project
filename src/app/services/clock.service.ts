@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Store} from "@ngrx/store";
 import {StoreState} from "../redux-store/models/store-state";
-import {incomeSelector} from "../redux-store/selectors/game-selectors";
-import {addGold} from "../redux-store/actions/game-actions";
+import {goldIncomeSelector} from "../redux-store/selectors/gold-selectors";
 import {Observable, Subject} from "rxjs";
+import {addGold} from "../redux-store/actions/gold/gold-actions";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class ClockService {
   income: number =0;
 
   constructor(private store:Store<StoreState>) {
-    store.select(incomeSelector).subscribe(income => this.income = income);
+    store.select(goldIncomeSelector).subscribe(income => this.income = income);
     this.economicClock();
   }
 

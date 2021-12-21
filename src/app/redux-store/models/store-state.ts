@@ -1,9 +1,9 @@
 export interface StoreState {
   gold: number;
-  income: number;
+  goldIncome: number;
 }
 
 export const initialState: StoreState = {
   gold: 0,
-  income: 0
+  goldIncome: 0
 }

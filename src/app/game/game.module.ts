@@ -10,6 +10,7 @@ import { BuildingComponent } from './economy-management/components/building/buil
 import {MatTabsModule} from "@angular/material/tabs";
 import { EconomyScreenComponent } from './economy-management/components/economy-screen/economy-screen.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -21,14 +22,15 @@ import {MatGridListModule} from "@angular/material/grid-list";
     BuildingComponent,
     EconomyScreenComponent,
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatGridListModule,
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTabsModule,
+        MatGridListModule,
+        MatCardModule,
+    ],
   exports: [
     GameToolbarComponent
   ],

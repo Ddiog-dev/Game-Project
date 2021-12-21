@@ -10,6 +10,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {GameModule} from "./game/game.module";
 import {StoreModule} from "@ngrx/store";
 import {metaReducers, reducers, storeStateKey} from "./redux-store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {metaReducers, reducers, storeStateKey} from "./redux-store";
     GameModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreModule.forFeature(storeStateKey,reducers),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   exports: [],

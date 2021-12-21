@@ -1,4 +1,4 @@
 export enum IncomeType {
-  GOLD,
-  MANA
+  GOLD = "Gold",
+  MANA = "Mana"
 }

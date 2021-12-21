@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Subscription} from "rxjs";
-import {addGold} from "../../../redux-store/actions/game-actions";
-import {goldSelector} from "../../../redux-store/selectors/game-selectors";
+import {goldSelector} from "../../../redux-store/selectors/gold-selectors";
 import {StoreState} from "../../../redux-store/models/store-state";
+import {addGold} from "../../../redux-store/actions/gold/gold-actions";
 
 @Component({
   selector: 'app-game-toolbar',

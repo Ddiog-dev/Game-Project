@@ -11,16 +11,16 @@ export class EconomyManagementReducer {
     return {...state,gold: newAmount > 0? newAmount : 0}
   }
 
-  static addIncome(state: StoreState, amount: number){
-    return {...state,income: state.income + amount}
+  static addGoldIncome(state: StoreState, amount: number){
+    return {...state,goldIncome: state.goldIncome + amount}
   }
 
-  static removeIncome(state: StoreState, amount: number){
-    const newAmount = state.income-amount;
-    return {...state,income: newAmount > 0? newAmount : 0}
+  static removeGoldIncome(state: StoreState, amount: number){
+    const newAmount = state.goldIncome-amount;
+    return {...state,goldIncome: newAmount > 0? newAmount : 0}
   }
 
-  static resetIncome(state: StoreState, ){
-    return {...state,income: 0}
+  static resetGoldIncome(state: StoreState, ){
+    return {...state,goldIncome: 0}
   }
 }
