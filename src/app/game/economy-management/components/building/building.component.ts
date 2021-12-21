@@ -38,6 +38,7 @@ export class BuildingComponent implements OnInit {
   }
 
   get nextTierBuildings(): BuildingTier[]  {
+    console.log(this.building.nextTiers)
     return this.building.nextTiers.get(this.building.level+1)!;
   }
 

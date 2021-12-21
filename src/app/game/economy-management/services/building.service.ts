@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Building} from "../models/building";
-import {HttpClient} from "@angular/common/http";
+import Forum from "src/assets/buildings/forum.json"
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +8,10 @@ import {HttpClient} from "@angular/common/http";
 export class BuildingService {
 
 
-  forum!: Building;
 
-  constructor(private http: HttpClient) {
-    this.http.get<Building>("assets/buildings/forum.json").subscribe((data: Building) =>{
-      console.log(data);
-      this.forum = data
-    })
-
-  }
+  constructor() {}
 
    getBuildings(): Building[] {
-    return [this.forum]
+    return [Forum as unknown as Building]
   }
 }

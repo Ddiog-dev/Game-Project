@@ -5,7 +5,7 @@
   "tier": {
     "description": "",
     "income": 1,
-    "incomeType": "Gold",
+    "incomeType": "GOLD",
     "cost": 1
   },
   "nextTiers": {
