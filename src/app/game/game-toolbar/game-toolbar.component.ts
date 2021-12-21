@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Subscription} from "rxjs";
-import {goldSelector} from "../../../redux-store/gold/selector/gold-selectors";
-import {StoreState} from "../../../redux-store/models/store-state";
-import {addGold} from "../../../redux-store/gold/action/gold-actions";
+import {goldAmount} from "../../redux-store/gold/selector/gold-selectors";
+import {StoreState} from "../../redux-store/models/store-state";
+import {addGold} from "../../redux-store/gold/action/gold-actions";
+import {manaAmount} from "../../redux-store/mana/selector/mana-selectors";
 
 @Component({
   selector: 'app-game-toolbar',
@@ -17,10 +18,13 @@ export class GameToolbarComponent implements OnInit, OnDestroy {
 
 
   gold: number = 0;
+  mana: number = 0;
+
   subscriptions: Subscription[] = [];
 
   ngOnInit(): void {
-    this.subscriptions.push(this.store.select(goldSelector).subscribe(gold => this.gold = gold));
+    this.subscriptions.push(this.store.select(goldAmount).subscribe(gold => this.gold = gold));
+    this.subscriptions.push(this.store.select(manaAmount).subscribe(mana => this.mana = mana));
   }
 
   ngOnDestroy(): void {

@@ -2,7 +2,7 @@ import { StoreState} from "../../models/store-state";
 import {createSelector} from "@ngrx/store";
 import {GoldState} from "../model/gold-state";
 
-export const selectEconomy = (state: StoreState) => state.gold;
+const gold = (state: StoreState) => state.gold;
 
-export const goldSelector = createSelector(selectEconomy,(economy: GoldState) => economy.amount);
-export const goldIncomeSelector = createSelector(selectEconomy,(economy: GoldState) => economy.income);
+export const goldAmount = createSelector(gold,(economy: GoldState) => economy.amount);
+export const goldIncome = createSelector(gold,(economy: GoldState) => economy.income);

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Store} from "@ngrx/store";
 import {StoreState} from "../redux-store/models/store-state";
-import {goldIncomeSelector} from "../redux-store/gold/selector/gold-selectors";
+import {goldIncome} from "../redux-store/gold/selector/gold-selectors";
 import {Observable, Subject} from "rxjs";
 import {addGold} from "../redux-store/gold/action/gold-actions";
+import {manaIncome} from "../redux-store/mana/selector/mana-selectors";
+import {addMana} from "../redux-store/mana/action/mana-actions";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,13 @@ export class ClockService {
   clockObservable: Observable<void> = this.clockSubject.asObservable();
 
   activeClock: boolean = true;
-  income: number =0;
+
+  goldIncome: number = 0;
+  manaIncome: number = 0;
 
   constructor(private store:Store<StoreState>) {
-    store.select(goldIncomeSelector).subscribe(income => this.income = income);
+    store.select(goldIncome).subscribe(income => this.goldIncome = income);
+    store.select(manaIncome).subscribe(income => this.manaIncome = income)
     this.economicClock();
   }
 
@@ -35,7 +40,8 @@ export class ClockService {
   }
 
   economicClock(){
-    this.store.dispatch(addGold({amount:this.income}));
+    this.store.dispatch(addGold({amount:this.goldIncome}));
+    this.store.dispatch(addMana({amount:this.manaIncome}));
   }
 
   getObservable(): Observable<void>{

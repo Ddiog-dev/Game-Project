@@ -3,10 +3,10 @@ import {Building} from "../../models/building";
 import {StoreState} from "../../../../redux-store/models/store-state";
 import {Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import {goldSelector} from "../../../../redux-store/gold/selector/gold-selectors";
-import {StoreUtil} from "../../../../utils/store-util";
+import {goldAmount} from "../../../../redux-store/gold/selector/gold-selectors";
 import {BuildingTier} from "../../models/building-tier";
 import {removeGold, removeGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
+import {StoreUtil} from "../../../../redux-store/utils/store-util";
 
 @Component({
   selector: 'app-building',
@@ -27,7 +27,7 @@ export class BuildingComponent implements OnInit {
   constructor(private store: Store<StoreState>) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(this.store.select(goldSelector).subscribe(gold => this.currentGold = gold));
+    this.subscriptions.push(this.store.select(goldAmount).subscribe(gold => this.currentGold = gold));
   }
   get hasNextTier(): boolean {
     return this.building.nextTiers.length > 0;
