@@ -8,12 +8,12 @@
 
     <mat-card-content>
       Income: {{building.tier.income}} <br>
-      Current tier: {{building.tier.tier}}<br>
+      Current tier: {{building.level}}<br>
       Income type: {{building.tier.incomeType}}
     </mat-card-content>
     <mat-card-actions style="display: flex">
       <mat-card style="background:lightslategrey; border: solid black" *ngFor="let nextTier of nextTierBuildings">
-        <mat-card-subtitle> <strong> Tier {{nextTier.tier}} </strong> </mat-card-subtitle>
+        <mat-card-subtitle> <strong> Tier {{building.level + 1}} </strong> </mat-card-subtitle>
         <mat-card-content>
           Income:{{nextTier.income}}<br>
           Income type: {{nextTier.incomeType}}

@@ -1,0 +1,49 @@
+{
+  "name": "test building 1",
+  "level":0,
+  "description": "desc 1",
+  "tier": {
+    "description": "",
+    "income": 1,
+    "incomeType": "Gold",
+    "cost": 1
+  },
+  "nextTiers": {
+    "0": [
+      {
+        "description": "",
+        "income": 1,
+        "incomeType": "Gold",
+        "cost": 1
+      }
+    ],
+    "1": [
+      {
+        "description": "",
+        "income": 2,
+        "incomeType": "Gold",
+        "cost": 1
+      },
+      {
+        "description": "",
+        "income": 2,
+        "incomeType": "Mana",
+        "cost": 1
+      }
+    ],
+    "2": [
+      {
+        "description": "",
+        "income": 3,
+        "incomeType": "Gold",
+        "cost": 1
+      },
+      {
+        "description": "",
+        "income": 3,
+        "incomeType": "Mana",
+        "cost": 1
+      }
+    ]
+  }
+}

@@ -30,15 +30,15 @@ export class BuildingComponent implements OnInit {
     this.subscriptions.push(this.store.select(goldAmount).subscribe(gold => this.currentGold = gold));
   }
   get hasNextTier(): boolean {
-    return this.building.nextTiers.length > 0;
+    return this.building.nextTiers.get(this.building.level+1) != undefined;
   }
 
   get nextTierCost(): number {
-    return this.building.nextTiers.length > 0 ? this.building.nextTiers[0].cost : Number.MAX_SAFE_INTEGER
+    return this.building.nextTiers.get(this.building.level+1) ? this.building.nextTiers.get(this.building.level+1)![0].cost : Number.MAX_SAFE_INTEGER
   }
 
   get nextTierBuildings(): BuildingTier[]  {
-    return this.building.nextTiers.filter(building => building.tier === this.building.tier.tier + 1);
+    return this.building.nextTiers.get(this.building.level+1)!;
   }
 
 
@@ -48,7 +48,7 @@ export class BuildingComponent implements OnInit {
       this.store.dispatch(removeGoldIncome( {amount: this.building.tier.income}));
 
       this.building.tier = tier;
-      this.building.nextTiers = this.building.nextTiers.filter(buildingTier => buildingTier !== this.building.tier)!;
+      this.building.level += 1;
       StoreUtil.addIncome(this.store, this.building);
       //TODO modifier quantité d'income et changer type d'income si jamais
     }

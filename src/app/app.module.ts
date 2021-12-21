@@ -11,6 +11,7 @@ import {GameModule} from "./game/game.module";
 import {StoreModule} from "@ngrx/store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {ReduxStoreModule} from "./redux-store/redux-store.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ReduxStoreModule} from "./redux-store/redux-store.module";
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+    HttpClientModule,
     MatToolbarModule,
     GameModule,
     StoreModule.forRoot({}),

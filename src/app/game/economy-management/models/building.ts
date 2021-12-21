@@ -3,7 +3,8 @@ import {BuildingTier} from "./building-tier";
 
 export interface Building extends MainScreenBuildingRepresentation{
   name: string;
+  level: number;
   description: string;
   tier: BuildingTier;
-  nextTiers: BuildingTier[];
+  nextTiers: Map<number, BuildingTier[]>;
 }
