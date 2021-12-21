@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ClockService} from "./services/clock.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Game-Project';
+  constructor(private clockService: ClockService) {
+    clockService.startClock();
+  }
 }
