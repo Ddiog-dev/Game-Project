@@ -10,7 +10,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {GameModule} from "./game/game.module";
 import {StoreModule} from "@ngrx/store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {goldFeatureKey, goldReducer} from "./redux-store/gold/reducer/gold-reducer";
+import {ReduxStoreModule} from "./redux-store/redux-store.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {goldFeatureKey, goldReducer} from "./redux-store/gold/reducer/gold-reduc
     MatToolbarModule,
     GameModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature(goldFeatureKey, goldReducer),
+    ReduxStoreModule,
     StoreDevtoolsModule.instrument()
   ],
   providers: [],
