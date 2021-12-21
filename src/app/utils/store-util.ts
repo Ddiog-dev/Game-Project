@@ -1,7 +1,7 @@
 import {Store} from "@ngrx/store";
 import {Building} from "../game/economy-management/models/building";
 import {IncomeType} from "../game/economy-management/models/income-type";
-import {addGoldIncome} from "../redux-store/actions/gold/income-actions";
+import {addGoldIncome} from "../redux-store/gold/action/gold-actions";
 
 export class StoreUtil {
 

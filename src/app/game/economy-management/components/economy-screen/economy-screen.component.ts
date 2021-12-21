@@ -4,7 +4,7 @@ import {BuildingService} from "../../services/building.service";
 import {Store} from "@ngrx/store";
 import {StoreState} from "../../../../redux-store/models/store-state";
 import {StoreUtil} from "../../../../utils/store-util";
-import {resetGoldIncome} from "../../../../redux-store/actions/gold/income-actions";
+import {resetGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
 
 @Component({
   selector: 'app-economy-screen',

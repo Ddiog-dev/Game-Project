@@ -9,8 +9,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {GameModule} from "./game/game.module";
 import {StoreModule} from "@ngrx/store";
-import {metaReducers, reducers, storeStateKey} from "./redux-store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {goldFeatureKey, goldReducer} from "./redux-store/gold/reducer/gold-reducer";
 
 @NgModule({
   declarations: [
@@ -25,8 +25,8 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     MatIconModule,
     MatToolbarModule,
     GameModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
-    StoreModule.forFeature(storeStateKey,reducers),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(goldFeatureKey, goldReducer),
     StoreDevtoolsModule.instrument()
   ],
   providers: [],

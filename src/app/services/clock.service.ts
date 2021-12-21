@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Store} from "@ngrx/store";
 import {StoreState} from "../redux-store/models/store-state";
-import {goldIncomeSelector} from "../redux-store/selectors/gold-selectors";
+import {goldIncomeSelector} from "../redux-store/gold/selector/gold-selectors";
 import {Observable, Subject} from "rxjs";
-import {addGold} from "../redux-store/actions/gold/gold-actions";
+import {addGold} from "../redux-store/gold/action/gold-actions";
 
 @Injectable({
   providedIn: 'root'

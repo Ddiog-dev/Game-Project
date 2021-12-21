@@ -3,11 +3,10 @@ import {Building} from "../../models/building";
 import {StoreState} from "../../../../redux-store/models/store-state";
 import {Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import {goldSelector} from "../../../../redux-store/selectors/gold-selectors";
+import {goldSelector} from "../../../../redux-store/gold/selector/gold-selectors";
 import {StoreUtil} from "../../../../utils/store-util";
 import {BuildingTier} from "../../models/building-tier";
-import {removeGold} from "../../../../redux-store/actions/gold/gold-actions";
-import {removeGoldIncome} from "../../../../redux-store/actions/gold/income-actions";
+import {removeGold, removeGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
 
 @Component({
   selector: 'app-building',

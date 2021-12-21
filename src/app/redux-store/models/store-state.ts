@@ -1,9 +1,5 @@
-export interface StoreState {
-  gold: number;
-  goldIncome: number;
-}
+import {GoldState} from "../gold/model/gold-state";
 
-export const initialState: StoreState = {
-  gold: 0,
-  goldIncome: 0
+export interface StoreState {
+  gold: GoldState;
 }
