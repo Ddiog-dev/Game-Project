@@ -1,0 +1,21 @@
+{
+  "name": "Tavern",
+  "level": -1,
+  "description": "Only fun",
+  "tier": {
+    "description": "",
+    "income": 0,
+    "incomeType": "Gold",
+    "cost": 50
+  },
+  "allTiers": [
+    [
+      {
+        "description": "",
+        "income": 10,
+        "incomeType": "Gold",
+        "cost": 50
+      }
+    ]
+  ]
+}

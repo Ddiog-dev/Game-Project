@@ -5,6 +5,7 @@ import {Store} from "@ngrx/store";
 import {StoreState} from "../../../../redux-store/models/store-state";
 import {addGoldIncome, resetGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
 import {IncomeType} from "../../models/income-type";
+import {addManaIncome, resetManaIncome} from "../../../../redux-store/mana/action/mana-actions";
 
 @Component({
   selector: 'app-economy-screen',
@@ -32,14 +33,18 @@ export class EconomyScreenComponent implements OnInit {
 
   resetIncomes(){
     this.store.dispatch(resetGoldIncome())
+    this.store.dispatch(resetManaIncome())
   }
 
   initialiseIncomes(){
+    console.log('add income')
     let goldIncome = 0;
+    let manaIncome = 0;
 
     this.buildings.forEach(building => {
       switch (building.tier.incomeType){
         case IncomeType.MANA:
+          manaIncome += building.tier.income
           break;
         case IncomeType.GOLD:
           goldIncome += building.tier.income
@@ -50,6 +55,7 @@ export class EconomyScreenComponent implements OnInit {
     });
 
     this.store.dispatch(addGoldIncome({amount: goldIncome}));
+    this.store.dispatch(addManaIncome({amount: manaIncome}));
   }
 
 }

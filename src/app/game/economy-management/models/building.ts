@@ -6,5 +6,5 @@ export interface Building extends MainScreenBuildingRepresentation{
   level: number;
   description: string;
   tier: BuildingTier;
-  nextTiers: Map<number, BuildingTier[]>;
+  allTiers: BuildingTier[][];
 }

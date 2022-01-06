@@ -30,16 +30,19 @@ export class BuildingComponent implements OnInit {
     this.subscriptions.push(this.store.select(goldAmount).subscribe(gold => this.currentGold = gold));
   }
   get hasNextTier(): boolean {
-    return this.building.nextTiers.get(this.building.level+1) != undefined;
+    return this.building.allTiers[this.building.level+1] != undefined;
   }
 
   get nextTierCost(): number {
-    return this.building.nextTiers.get(this.building.level+1) ? this.building.nextTiers.get(this.building.level+1)![0].cost : Number.MAX_SAFE_INTEGER
+    return this.building.allTiers[this.building.level+1] ? this.building.allTiers[this.building.level+1]![0].cost : Number.MAX_SAFE_INTEGER
+  }
+
+  get currentTierBuildings(): BuildingTier[]{
+    return this.building.level >= 0 ? this.building.allTiers[this.building.level].filter(tier => tier.incomeType != this.building.tier.incomeType): [];
   }
 
   get nextTierBuildings(): BuildingTier[]  {
-    console.log(this.building.nextTiers)
-    return this.building.nextTiers.get(this.building.level+1)!;
+    return this.building.allTiers[this.building.level+1];
   }
 
 
@@ -54,6 +57,8 @@ export class BuildingComponent implements OnInit {
       //TODO modifier quantité d'income et changer type d'income si jamais
     }
   }
+
+
 
 
 

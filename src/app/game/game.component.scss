@@ -15,14 +15,14 @@
   left: 0;
   top: $toolbar-height;
   width: 100%;
-  height: 100% - $toolbar-height;
+  height: calc(100vh - #{$toolbar-height});
 }
 
 .side-panel-dimensions{
   left: $main-screen-width;
   top: $toolbar-height;
   width: 100% - $main-screen-width;
-  height: 100% - $toolbar-height;
+  height: calc(100vh - #{$toolbar-height});
 }
 
 .toolbar-dimensions {

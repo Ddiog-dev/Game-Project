@@ -1,15 +1,15 @@
 {
-  "name": "test building 1",
+  "name": "Forum",
   "level":0,
-  "description": "desc 1",
+  "description": "Batiment principal",
   "tier": {
     "description": "",
     "income": 1,
-    "incomeType": "GOLD",
+    "incomeType": "Gold",
     "cost": 1
   },
-  "nextTiers": {
-    "0": [
+  "allTiers": [
+    [
       {
         "description": "",
         "income": 1,
@@ -17,7 +17,7 @@
         "cost": 1
       }
     ],
-    "1": [
+    [
       {
         "description": "",
         "income": 2,
@@ -31,7 +31,7 @@
         "cost": 1
       }
     ],
-    "2": [
+    [
       {
         "description": "",
         "income": 3,
@@ -45,5 +45,5 @@
         "cost": 1
       }
     ]
-  }
+  ]
 }
