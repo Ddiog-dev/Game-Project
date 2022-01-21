@@ -1,11 +1,20 @@
 import {createReducer, on} from "@ngrx/store";
 import {ManaState, initialManaState} from "../model/mana-state";
-import {addMana, addManaIncome, removeMana, removeManaIncome, resetManaIncome} from "../action/mana-actions";
+import {
+  addMana,
+  addManaIncome,
+  removeMana,
+  removeManaIncome,
+  resetManaIncome,
+  setManaState
+} from "../action/mana-actions";
+import {GoldState} from "../../gold/model/gold-state";
 
 export const manaFeatureKey = 'mana';
 
 export const manaReducer = createReducer(
   initialManaState,
+  on(setManaState, (state,{newState}) => ManaManagementReducer.setValues(state,newState)),
   on(addMana, (state,{amount}) => ManaManagementReducer.addMana(state,amount)),
   on(removeMana, (state,{amount}) => ManaManagementReducer.removeMana(state,amount)),
   on(addManaIncome, (state, {amount}) => ManaManagementReducer.addManaIncome(state,amount)),
@@ -14,6 +23,11 @@ export const manaReducer = createReducer(
 );
 
 class ManaManagementReducer {
+
+  static setValues(state: ManaState, newState:ManaState){
+    return {...newState};
+  }
+
   static addMana(state: ManaState, amount: number){
     return { ...state, amount: state.amount + amount}
   }

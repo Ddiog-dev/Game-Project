@@ -1,11 +1,20 @@
 import {createReducer, on} from "@ngrx/store";
 import {GoldState, initialGoldState} from "../model/gold-state";
-import {addGold, addGoldIncome, removeGold, removeGoldIncome, resetGoldIncome} from "../action/gold-actions";
+import {
+  addGold,
+  addGoldIncome,
+  removeGold,
+  removeGoldIncome,
+  resetGoldIncome,
+  setGoldState
+} from "../action/gold-actions";
+import {setManaState} from "../../mana/action/mana-actions";
 
 export const goldFeatureKey = 'gold';
 
 export const goldReducer = createReducer(
   initialGoldState,
+  on(setGoldState, (state,{newState}) => GoldManagementReducer.setValues(state,newState)),
   on(addGold, (state,{amount}) => GoldManagementReducer.addGold(state,amount)),
   on(removeGold, (state,{amount}) => GoldManagementReducer.removeGold(state,amount)),
   on(addGoldIncome, (state, {amount}) => GoldManagementReducer.addGoldIncome(state,amount)),
@@ -14,6 +23,10 @@ export const goldReducer = createReducer(
 );
 
 class GoldManagementReducer {
+  static setValues(state: GoldState, newState:GoldState){
+    return {...newState};
+  }
+
   static addGold(state: GoldState, amount: number){
     return { ...state, amount: state.amount + amount}
   }

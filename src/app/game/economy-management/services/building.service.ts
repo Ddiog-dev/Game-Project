@@ -7,12 +7,10 @@ import Tavern from "src/assets/buildings/tavern.json"
   providedIn: 'root'
 })
 export class BuildingService {
-
-
-
-  constructor() {}
-
    getBuildings(): Building[] {
-    return [Forum as unknown as Building, Tavern as unknown as Building,Forum as unknown as Building,Forum as unknown as Building,Forum as unknown as Building,Forum as unknown as Building,Forum as unknown as Building,Forum as unknown as Building ]
+    return [
+      Forum as unknown as Building,
+      Tavern as unknown as Building
+    ]
   }
 }

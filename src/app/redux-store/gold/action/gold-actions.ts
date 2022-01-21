@@ -1,5 +1,8 @@
 import {createAction, props} from "@ngrx/store";
+import {GoldState} from "../model/gold-state";
 
+
+export const setGoldState = createAction('[Resource set Gold state]', props<{newState: GoldState}>());
 export const addGold = createAction('[Resource add gold]', props<{amount: number}>());
 export const removeGold = createAction('[Resource remove gold]', props<{amount: number}>());
 
