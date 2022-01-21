@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Store} from "@ngrx/store";
-import {StoreState} from "../redux-store/models/store-state";
+import {StoreState} from "../redux-store/store-state/store-state";
 import {goldIncome} from "../redux-store/gold/selector/gold-selectors";
 import {Observable, Subject} from "rxjs";
 import {addGold} from "../redux-store/gold/action/gold-actions";
@@ -30,7 +30,10 @@ export class ClockService {
     if(this.activeClock){
       setTimeout(() => {
         this.economicClock()
-        this.startClock();
+        this.clockSubject.next();
+
+
+        this.startClock();//last call for recursion
       },5000)
     }
   }
@@ -38,7 +41,7 @@ export class ClockService {
     this.activeClock = false;
   }
 
-  economicClock(){
+  private economicClock(){
     this.store.dispatch(addGold({amount:this.goldIncome}));
     this.store.dispatch(addMana({amount:this.manaIncome}));
   }

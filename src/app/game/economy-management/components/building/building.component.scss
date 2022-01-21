@@ -1,7 +1,34 @@
 .building-decoration {
   background: lightslategrey;
   border: black solid 3px;
-  padding: 2px;
-  width: 100%;
-  height: 100%;
+  scrollbar-gutter: stable;
+}
+
+.building-size{
+  width: 350px;
+  height: 330px;
+  overflow: auto;
+}
+
+
+/* Track */
+::-webkit-scrollbar {
+  background: lightslategrey;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #9A9FA1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #515354;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3B3D3D;
 }

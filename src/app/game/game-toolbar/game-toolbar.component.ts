@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Subscription} from "rxjs";
 import {goldAmount, goldIncome} from "../../redux-store/gold/selector/gold-selectors";
-import {StoreState} from "../../redux-store/models/store-state";
+import {StoreState} from "../../redux-store/store-state/store-state";
 import {addGold} from "../../redux-store/gold/action/gold-actions";
 import {manaAmount, manaIncome} from "../../redux-store/mana/selector/mana-selectors";
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {SaveService} from "../../../services/save.service";
 
 @Component({
   selector: 'app-menu',
@@ -8,12 +9,13 @@ import {Router} from "@angular/router";
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private saveService: SaveService) { }
 
   ngOnInit(): void {
   }
 
   createGame(){
+    this.saveService.resetGame();
     this.router.navigateByUrl('game');
   }
 

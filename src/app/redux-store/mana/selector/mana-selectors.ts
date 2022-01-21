@@ -1,4 +1,4 @@
-import { StoreState} from "../../models/store-state";
+import { StoreState} from "../../store-state/store-state";
 import {createSelector} from "@ngrx/store";
 import {ManaState} from "../model/mana-state";
 

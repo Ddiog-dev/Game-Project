@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Building} from "../../models/building";
 import {BuildingService} from "../../services/building.service";
 import {Store} from "@ngrx/store";
-import {StoreState} from "../../../../redux-store/models/store-state";
+import {StoreState} from "../../../../redux-store/store-state/store-state";
 import {addGoldIncome, resetGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
 import {IncomeType} from "../../models/income-type";
 import {addManaIncome, resetManaIncome} from "../../../../redux-store/mana/action/mana-actions";

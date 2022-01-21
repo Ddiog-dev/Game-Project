@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Building} from "../../models/building";
-import {StoreState} from "../../../../redux-store/models/store-state";
+import {StoreState} from "../../../../redux-store/store-state/store-state";
 import {Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
 import {goldAmount} from "../../../../redux-store/gold/selector/gold-selectors";

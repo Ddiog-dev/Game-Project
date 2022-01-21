@@ -1,16 +1,32 @@
-<div class="building-decoration">
-  <mat-card style="background:lightslategrey">
-    <mat-card-header>
-      <div mat-card-avatar style="background-size: cover;"><mat-icon>home</mat-icon></div>
-      <mat-card-title>{{building.name}}</mat-card-title>
-      <mat-card-subtitle>{{building.description}}</mat-card-subtitle>
-    </mat-card-header>
+<mat-card class=" building-size building-decoration " style="background:lightslategrey">
+  <mat-card-header>
+    <div mat-card-avatar style="background-size: cover;"><mat-icon>home</mat-icon></div>
+    <mat-card-title>{{building.name}}</mat-card-title>
+    <mat-card-subtitle>{{building.description}}</mat-card-subtitle>
+  </mat-card-header>
 
-    <mat-card-content>
-      Income: {{building.tier.income}} <br>
-      Current tier: {{building.level >= 0? building.level : '/'}}<br>
-      Income type: {{building.tier.incomeType}}
-    </mat-card-content>
+  <mat-card-content>
+    Income: {{building.tier.income}} <br>
+    Current tier: {{building.level >= 0? building.level : '/'}}<br>
+    Income type: {{building.tier.incomeType}}
+  </mat-card-content>
+
+  Next Tiers:
+  <mat-card-actions style="display: flex;">
+    <mat-card style="background:lightslategrey; border: solid black; margin-right: 3px" *ngFor="let nextTier of nextTierBuildings">
+      <mat-card-subtitle> <strong> Tier {{building.level + 1}} </strong> </mat-card-subtitle>
+      <mat-card-content>
+        Income:{{nextTier.income}}<br>
+        Income type: {{nextTier.incomeType}}
+      </mat-card-content>
+      <button mat-raised-button color="primary" style="width: 100%" [disabled]="nextTier.cost > currentGold" (click)="upgradeToNextTier(nextTier)">
+        {{nextTier.cost}} gold <mat-icon>{{ building.level >=0 ?'arrow_circle_up' : 'lock_open'}}</mat-icon>
+      </button>
+    </mat-card>
+  </mat-card-actions>
+
+  <ng-container *ngIf="currentTierBuildings.length > 0">
+    Change current tier
     <mat-card-actions style="display: flex">
       <mat-card style="background:lightslategrey; border: solid black" *ngFor="let currentTier of currentTierBuildings">
         <mat-card-subtitle> <strong> Tier {{building.level}} </strong> </mat-card-subtitle>
@@ -23,22 +39,8 @@
         </button>
       </mat-card>
     </mat-card-actions>
-    <mat-card-actions style="display: flex">
-      <mat-card style="background:lightslategrey; border: solid black" *ngFor="let nextTier of nextTierBuildings">
-        <mat-card-subtitle> <strong> Tier {{building.level + 1}} </strong> </mat-card-subtitle>
-        <mat-card-content>
-          Income:{{nextTier.income}}<br>
-          Income type: {{nextTier.incomeType}}
-        </mat-card-content>
-        <button mat-raised-button color="primary" style="width: 100%" [disabled]="nextTier.cost > currentGold" (click)="upgradeToNextTier(nextTier)">
-          {{nextTier.cost}} gold <mat-icon>{{ building.level >=0 ?'arrow_circle_up' : 'lock_open'}}</mat-icon>
-        </button>
-      </mat-card>
-    </mat-card-actions>
-  </mat-card>
-
-
-</div>
+  </ng-container>
+</mat-card>
 
 
 
