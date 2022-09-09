@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Building} from "../../models/building";
 import {BuildingService} from "../../services/building.service";
 import {Store} from "@ngrx/store";
@@ -6,29 +6,33 @@ import {StoreState} from "../../../../redux-store/store-state/store-state";
 import {addGoldIncome, resetGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
 import {IncomeType} from "../../models/income-type";
 import {addManaIncome, resetManaIncome} from "../../../../redux-store/mana/action/mana-actions";
+import {Subscription} from "rxjs";
+import {BackEndService} from "../../../../services/back-end.service";
 
 @Component({
   selector: 'app-economy-screen',
   templateUrl: './economy-screen.component.html',
   styleUrls: ['./economy-screen.component.scss']
 })
-export class EconomyScreenComponent implements OnInit {
+export class EconomyScreenComponent implements OnInit, OnDestroy {
 
   buildings: Building[]= [];
+  buildingSubscription?: Subscription;
 
-  columns: number = 0;
-
-  constructor(private buildingService: BuildingService, private store: Store<StoreState>) { }
+  constructor(private buildingService: BuildingService, private store: Store<StoreState> , private backendService: BackEndService) { }
 
   ngOnInit(): void {
-    this.resetIncomes()
-    this.buildings = this.buildingService.getBuildings();
-    this.updateColumnsNumbers();
-    this.initialiseIncomes();
+    this.resetIncomes();
+    this.buildingSubscription = this.buildingService.getBuildings().subscribe(buildings => this.buildings = buildings);
+    this.backendService.getAll().subscribe((buildings: string[]) => {
+      this.buildings = [];
+      buildings.forEach(building => this.buildings.push(JSON.parse(building)));
+      this.initialiseIncomes();
+    })
   }
 
-  updateColumnsNumbers(){
-    this.columns = Math.ceil(Math.sqrt(this.buildings.length));
+  ngOnDestroy(): void {
+    this.buildingSubscription?.unsubscribe();
   }
 
   resetIncomes(){
@@ -56,6 +60,10 @@ export class EconomyScreenComponent implements OnInit {
 
     this.store.dispatch(addGoldIncome({amount: goldIncome}));
     this.store.dispatch(addManaIncome({amount: manaIncome}));
+  }
+
+  updateBuildingStore(){
+    this.buildingService.saveBuildings();
   }
 
 }

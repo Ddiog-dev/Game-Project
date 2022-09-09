@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Building} from "../../models/building";
 import {StoreState} from "../../../../redux-store/store-state/store-state";
 import {Subscription} from "rxjs";
@@ -7,6 +7,7 @@ import {goldAmount} from "../../../../redux-store/gold/selector/gold-selectors";
 import {BuildingTier} from "../../models/building-tier";
 import {removeGold, removeGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
 import {StoreUtil} from "../../../../redux-store/utils/store-util";
+import {BackEndService} from "../../../../services/back-end.service";
 
 @Component({
   selector: 'app-building',
@@ -23,6 +24,9 @@ export class BuildingComponent implements OnInit {
 
   subscriptions: Subscription[]= [];
   currentGold: number = 0;
+
+  @Output()
+  buildingEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private store: Store<StoreState>) {}
 
@@ -54,6 +58,8 @@ export class BuildingComponent implements OnInit {
       this.building.tier = tier;
       this.building.level += 1;
       StoreUtil.addIncome(this.store, this.building);
+
+      this.buildingEvent.emit();
       //TODO modifier quantité d'income et changer type d'income si jamais
     }
   }

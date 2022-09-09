@@ -1,6 +1,6 @@
 import {BuildingTier} from "./building-tier";
 
-export interface MainScreenBuildingRepresentation {
+export interface SimplifiedBuildingRepresentation {
   name: string;
   tier: BuildingTier;
 }

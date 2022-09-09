@@ -5,6 +5,7 @@ import {goldAmount, goldIncome} from "../../redux-store/gold/selector/gold-selec
 import {StoreState} from "../../redux-store/store-state/store-state";
 import {addGold} from "../../redux-store/gold/action/gold-actions";
 import {manaAmount, manaIncome} from "../../redux-store/mana/selector/mana-selectors";
+import {BackEndService} from "../../services/back-end.service";
 
 @Component({
   selector: 'app-game-toolbar',
@@ -13,7 +14,7 @@ import {manaAmount, manaIncome} from "../../redux-store/mana/selector/mana-selec
 })
 export class GameToolbarComponent implements OnInit, OnDestroy {
 
-  constructor(private store: Store<StoreState>) { }
+  constructor(private store: Store<StoreState>, public backEndService: BackEndService) { }
 
 
 

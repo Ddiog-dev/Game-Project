@@ -5,6 +5,8 @@ import {currentStoreState} from "../redux-store/store-state/store-state-selector
 import {initialStoreState, StoreState} from "../redux-store/store-state/store-state";
 import {setManaState} from "../redux-store/mana/action/mana-actions";
 import {setGoldState} from "../redux-store/gold/action/gold-actions";
+import {BuildingService} from "../game/economy-management/services/building.service";
+import {setBuildingState} from "../redux-store/building/action/building-actions";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class SaveService {
 
   storeState?: StoreState;
 
-  constructor(private clockService: ClockService, private store: Store<StoreState>) {
+  constructor(private clockService: ClockService, private store: Store<StoreState>, private buildingService: BuildingService) {
     clockService.getObservable().subscribe(() => this.saveGame())
     this.store.select(currentStoreState).subscribe(storeState => this.storeState = storeState);
   }
@@ -33,6 +35,7 @@ export class SaveService {
     const game: StoreState =  inStorage? JSON.parse(inStorage) : initialStoreState;
 
     this.store.dispatch(setManaState({newState: game.mana}));
-    this.store.dispatch(setGoldState({newState: game.gold}))
+    this.store.dispatch(setGoldState({newState: game.gold}));
+    this.store.dispatch(setBuildingState({newState: game.building}))
   }
 }

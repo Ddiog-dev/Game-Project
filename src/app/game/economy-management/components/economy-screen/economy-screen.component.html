@@ -1,6 +1,6 @@
-<mat-grid-list class="economy-grid-height" [cols]="columns">
-  <mat-grid-tile colspan="1" rowspan="1" *ngFor="let building of buildings">
-    <app-building [building]="building"></app-building>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="row">
+  <div class="col" *ngFor="let building of buildings">
+    <app-building [building]="building" (buildingEvent)="updateBuildingStore()"></app-building>
+  </div>
+</div>
 
