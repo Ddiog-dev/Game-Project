@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Building} from "../game/economy-management/models/building";
 import {concatMap, forkJoin, map, mergeMap, Observable} from "rxjs";
 import {BuildingType} from "../game/economy-management/models/building-type";
+import {StoreState} from "../redux-store/store-state/store-state";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,9 @@ export class BackEndService {
       this.getForum(),
       this.getTavern()
     ]);
+  }
+
+  saveState(storeState: StoreState){
+     this.httpClient.post('http://localhost:8000/game/state',{storeState}).subscribe(() => console.log("test"));
   }
 }
