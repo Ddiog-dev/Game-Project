@@ -8,8 +8,15 @@ import {Observable, shareReplay, Subject} from "rxjs";
 import {setBuildingStateList} from "../../../redux-store/building/action/building-actions";
 import {BackEndService} from "../../../services/back-end.service";
 import {BuildingTier} from "../models/building-tier";
-import {removeGold, removeGoldIncome} from "../../../redux-store/gold/action/gold-actions";
+import {
+  addGoldIncome,
+  removeGold,
+  removeGoldIncome,
+  resetGoldIncome
+} from "../../../redux-store/gold/action/gold-actions";
 import {StoreUtil} from "../../../redux-store/utils/store-util";
+import {addManaIncome, resetManaIncome} from "../../../redux-store/mana/action/mana-actions";
+import {IncomeType} from "../models/income-type";
 
 @Injectable({
   providedIn: 'root'
@@ -23,21 +30,19 @@ export class BuildingService {
   _buildingsObservable: Observable<Building[]> = this.buildingsSubject.asObservable().pipe(shareReplay(1));
 
   constructor(private store: Store<StoreState>, private backendService: BackEndService) {
-    this.initialize();
     store.select(buildingsUpgradesList)
       .subscribe(simplifiedBuildings => {
         this.updateBuildingsTier(simplifiedBuildings);
         this._buildingsTiers = simplifiedBuildings;
       });
     this.backendService.getAllBuildings().subscribe((buildings: Building[]) => {
+      this.resetIncomes();
       this.buildings = buildings;
+      this.initialiseIncomes();
     })
   }
 
 
-  initialize() {
-    this.updateBuildings();
-  }
 
   get buildingsObservable(): Observable<Building[]> {
     return this._buildingsObservable;
@@ -103,5 +108,31 @@ export class BuildingService {
 
   private updateBuildings() {
     this.buildingsSubject.next(this.buildings);
+  }
+
+  private resetIncomes(){
+    this.store.dispatch(resetGoldIncome())
+    this.store.dispatch(resetManaIncome())
+  }
+
+  private initialiseIncomes(){
+    let goldIncome = 0;
+    let manaIncome = 0;
+
+    this.buildings.forEach(building => {
+      switch (building.tier.incomeType){
+        case IncomeType.MANA:
+          manaIncome += building.tier.income
+          break;
+        case IncomeType.GOLD:
+          goldIncome += building.tier.income
+          break;
+        default:
+          break;
+      }
+    });
+
+    this.store.dispatch(addGoldIncome({amount: goldIncome}));
+    this.store.dispatch(addManaIncome({amount: manaIncome}));
   }
 }
