@@ -45,8 +45,8 @@ export class SaveService {
 
   loadGame(){
     this.backendService.getState().subscribe((state:StoreState) => {
-      this.store.dispatch(setManaState({newState: {amount: state.mana.amount, income:(state.mana.income || 1)}}));
       this.store.dispatch(setGoldState({newState: {amount: state.gold.amount, income:(state.gold.income || 1)}}));
+      this.store.dispatch(setManaState({newState: {amount: state.mana.amount, income:(state.mana.income || 1)}}));
       this.store.dispatch(setBuildingState({newState: {buildings: state.building.buildings}}))
     })
 
