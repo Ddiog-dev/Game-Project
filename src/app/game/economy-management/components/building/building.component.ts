@@ -8,6 +8,7 @@ import {BuildingTier} from "../../models/building-tier";
 import {removeGold, removeGoldIncome} from "../../../../redux-store/gold/action/gold-actions";
 import {StoreUtil} from "../../../../redux-store/utils/store-util";
 import {BackEndService} from "../../../../services/back-end.service";
+import {BuildingService} from "../../services/building.service";
 
 @Component({
   selector: 'app-building',
@@ -25,10 +26,7 @@ export class BuildingComponent implements OnInit {
   subscriptions: Subscription[]= [];
   currentGold: number = 0;
 
-  @Output()
-  buildingEvent: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor(private store: Store<StoreState>) {}
+  constructor(private store: Store<StoreState>, private buildingService: BuildingService) {}
 
   ngOnInit(): void {
     this.subscriptions.push(this.store.select(goldAmount).subscribe(gold => this.currentGold = gold));
@@ -49,19 +47,8 @@ export class BuildingComponent implements OnInit {
     return this.building.level <= this.building.allTiers.length-1 ?  this.building.allTiers[this.building.level+1] : [];
   }
 
-
   upgradeToNextTier(tier: BuildingTier): void {
-    if(this.currentGold >= tier.cost){
-      this.store.dispatch(removeGold({amount: tier.cost}));
-      this.store.dispatch(removeGoldIncome( {amount: this.building.tier.income}));
-
-      this.building.tier = tier;
-      this.building.level += 1;
-      StoreUtil.addIncome(this.store, this.building);
-
-      this.buildingEvent.emit();
-      //TODO modifier quantité d'income et changer type d'income si jamais
-    }
+    this.buildingService.upgradeToNextTier(this.building, tier);
   }
 
 

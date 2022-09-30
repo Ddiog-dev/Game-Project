@@ -4,5 +4,5 @@ import {BuildingState} from "../model/building-state";
 
 const building = (state: StoreState) => state.building;
 
-export const buildingsList = createSelector(building,(buildingState: BuildingState) => buildingState.buildings);
+export const buildingsUpgradesList = createSelector(building,(buildingState: BuildingState) => buildingState.buildings);
 export const buildingState = createSelector(building,(buildingSt: BuildingState) => buildingSt);

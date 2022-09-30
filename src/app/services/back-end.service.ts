@@ -21,7 +21,7 @@ export class BackEndService {
     return this.httpClient.get<Building>(`http://localhost:8000/building/${BuildingType.TAVERN}`);
   }
 
-  getAll(): Observable<Building[]> {
+  getAllBuildings(): Observable<Building[]> {
     return forkJoin([
       this.getForum(),
       this.getTavern()

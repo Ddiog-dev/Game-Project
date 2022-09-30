@@ -23,12 +23,10 @@ export class EconomyScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.resetIncomes();
-    this.buildingSubscription = this.buildingService.buildingsObservable.subscribe(buildings => this.buildings = buildings);
-    this.backendService.getAll().subscribe((buildings: Building[]) => {
-      this.buildingService.buildings = buildings;
-
+    this.buildingSubscription = this.buildingService.buildingsObservable.subscribe(buildings => {
+      this.buildings = buildings;
       this.initialiseIncomes();
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -41,7 +39,6 @@ export class EconomyScreenComponent implements OnInit, OnDestroy {
   }
 
   initialiseIncomes(){
-    console.log('add income')
     let goldIncome = 0;
     let manaIncome = 0;
 
@@ -60,10 +57,6 @@ export class EconomyScreenComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(addGoldIncome({amount: goldIncome}));
     this.store.dispatch(addManaIncome({amount: manaIncome}));
-  }
-
-  updateBuildingStore(){
-    this.buildingService.saveBuildings();
   }
 
 }
