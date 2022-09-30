@@ -5,60 +5,59 @@ import {StoreState} from "../../../redux-store/store-state/store-state";
 import {buildingsList} from "../../../redux-store/building/selector/building-selectors";
 import {SimplifiedBuildingRepresentation} from "../models/simplified-building-representation";
 import {Observable, shareReplay, Subject} from "rxjs";
-import {setBuildingList} from "../../../redux-store/building/action/building-actions";
+import {setBuildingStateList} from "../../../redux-store/building/action/building-actions";
+import {BackEndService} from "../../../services/back-end.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuildingService {
 
-  buildings: Building[] = [];
-  buildingMap: Map<string,Building>= new Map();
+  _buildings: Building[] = [];
 
   buildingsSubject: Subject<Building[]>= new Subject<Building[]>();
-  buildingsObservable: Observable<Building[]> = this.buildingsSubject.asObservable().pipe(shareReplay(1));
+  _buildingsObservable: Observable<Building[]> = this.buildingsSubject.asObservable().pipe(shareReplay(1));
 
   constructor(private store: Store<StoreState>) {
     this.initialize();
     store.select(buildingsList)
-      .subscribe(simplifiedBuildings => this.transFormSimplifiedToComplete(simplifiedBuildings));
+      .subscribe(simplifiedBuildings => this.updateBuildingsTier(simplifiedBuildings));
+  }
+
+  set buildings(list: Building[]){
+    this._buildings = list;
+    this.buildingsSubject.next(list);
   }
 
   initialize(){
     this.updateBuildings();
-
   }
 
-  getMapBuildingList(): Building[] {
-    return Array.from(this.buildingMap.values())
+   get buildingsObservable(): Observable<Building[]> {
+    return this._buildingsObservable;
   }
 
-   getBuildings(): Observable<Building[]> {
-    return this.buildingsObservable;
+  saveBuildings(){
+    this.store.dispatch(setBuildingStateList({buildings: this.transformCompleteToSimplified()}))
   }
 
-  transformCompleteToSimplified(): SimplifiedBuildingRepresentation[] {
-    return this.buildings.map(building => ({name: building.name, tier: building.tier}))
-  }
-
-  transFormSimplifiedToComplete(simplifiedBuildings: SimplifiedBuildingRepresentation[]){
+  private updateBuildingsTier(simplifiedBuildings: SimplifiedBuildingRepresentation[]){
     simplifiedBuildings.forEach(simplifiedBuilding => this.setFullBuilding(simplifiedBuilding));
     this.updateBuildings();
   }
 
-  setFullBuilding(simplifiedBuilding: SimplifiedBuildingRepresentation) {
-    const building = this.buildingMap.get(simplifiedBuilding.name);
-    if(building){
-      this.buildingMap.set(simplifiedBuilding.name, {...building, tier: simplifiedBuilding.tier});
+  private setFullBuilding(simplifiedBuilding: SimplifiedBuildingRepresentation) {
+    const buildingIndex = this.buildings.findIndex(build => build.name === simplifiedBuilding.name);
+    if(buildingIndex){
+      this.buildings[buildingIndex] = {...this.buildings[buildingIndex], tier: simplifiedBuilding.tier};
     }
   }
 
-  saveBuildings(){
-    this.store.dispatch(setBuildingList({buildings: this.transformCompleteToSimplified()}))
+  private transformCompleteToSimplified(): SimplifiedBuildingRepresentation[] {
+    return this.buildings.map(building => ({name: building.name, tier: building.tier}))
   }
 
-  updateBuildings(){
-    this.buildings = this.getMapBuildingList();
+  private updateBuildings(){
     this.buildingsSubject.next(this.buildings);
   }
 }

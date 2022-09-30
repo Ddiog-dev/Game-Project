@@ -23,9 +23,10 @@ export class EconomyScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.resetIncomes();
-    this.buildingSubscription = this.buildingService.getBuildings().subscribe(buildings => this.buildings = buildings);
+    this.buildingSubscription = this.buildingService.buildingsObservable.subscribe(buildings => this.buildings = buildings);
     this.backendService.getAll().subscribe((buildings: Building[]) => {
-      this.buildings = buildings;
+      this.buildingService.buildings = buildings;
+
       this.initialiseIncomes();
     })
   }

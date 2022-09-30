@@ -1,6 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import {BuildingState, initialBuildingState} from "../model/building-state";
-import {setBuildingList, setBuildingState} from "../action/building-actions";
+import {setBuildingStateList, setBuildingState} from "../action/building-actions";
 import {Building} from "../../../game/economy-management/models/building";
 import {
   SimplifiedBuildingRepresentation
@@ -11,7 +11,7 @@ export const buildingFeatureKey = 'building';
 export const buildingReducer = createReducer(
   initialBuildingState,
   on(setBuildingState, (state,{newState}) => GoldManagementReducer.setValues(state,newState)),
-  on(setBuildingList, (state,{buildings}) => GoldManagementReducer.setBuildings(state,buildings))
+  on(setBuildingStateList, (state, {buildings}) => GoldManagementReducer.setBuildings(state,buildings))
 );
 
 class GoldManagementReducer {

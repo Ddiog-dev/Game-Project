@@ -7,5 +7,5 @@ import {
 
 export const setBuildingState = createAction('[Resource set building state]', props<{newState: BuildingState}>());
 
-export const setBuildingList = createAction('[Resource set buildings]', props<{buildings: SimplifiedBuildingRepresentation[]}>());
+export const setBuildingStateList = createAction('[Resource set buildings]', props<{buildings: SimplifiedBuildingRepresentation[]}>());
 
