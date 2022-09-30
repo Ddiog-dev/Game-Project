@@ -30,6 +30,10 @@ export class BackEndService {
   }
 
   saveState(storeState: StoreState){
-     this.httpClient.post('http://localhost:8000/game/state',{storeState}).subscribe(() => console.log("test"));
+     this.httpClient.post('http://localhost:8000/game/state',storeState).subscribe(() => console.log("test"));
+  }
+
+  getState(): Observable<StoreState>{
+    return this.httpClient.get<StoreState>('http://localhost:8000/game/state');
   }
 }
