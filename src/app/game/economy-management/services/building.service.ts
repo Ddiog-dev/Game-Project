@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {Building} from "../models/building";
-import Forum from "src/assets/buildings/forum.json"
-import Tavern from "src/assets/buildings/tavern.json"
 import {Store} from "@ngrx/store";
 import {StoreState} from "../../../redux-store/store-state/store-state";
 import {buildingsList} from "../../../redux-store/building/selector/building-selectors";
@@ -27,8 +25,6 @@ export class BuildingService {
   }
 
   initialize(){
-    this.buildingMap.set('Forum', Forum as unknown as Building);
-    this.buildingMap.set('Tavern', Tavern as unknown as Building);
     this.updateBuildings();
 
   }

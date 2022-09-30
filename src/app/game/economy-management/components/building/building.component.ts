@@ -46,7 +46,7 @@ export class BuildingComponent implements OnInit {
   }
 
   get nextTierBuildings(): BuildingTier[]  {
-    return this.building.allTiers[this.building.level+1];
+    return this.building.level <= this.building.allTiers.length-1 ?  this.building.allTiers[this.building.level+1] : [];
   }
 
 
