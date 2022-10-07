@@ -1,4 +1,6 @@
 export enum BuildingType {
   TAVERN,
-  FORUM
+  FORUM,
+  MINE,
+  POTION_SHOP
 }

@@ -21,10 +21,20 @@ export class BackEndService {
     return this.httpClient.get<Building>(`http://localhost:8000/building/${BuildingType.TAVERN}`);
   }
 
+  getMine(): Observable<Building>{
+    return this.httpClient.get<Building>(`http://localhost:8000/building/${BuildingType.MINE}`);
+  }
+
+  getPotionShop(): Observable<Building>{
+    return this.httpClient.get<Building>(`http://localhost:8000/building/${BuildingType.POTION_SHOP}`);
+  }
+
   getAllBuildings(): Observable<Building[]> {
     return forkJoin([
       this.getForum(),
-      this.getTavern()
+      this.getTavern(),
+      this.getMine(),
+      this.getPotionShop(),
     ]);
   }
 

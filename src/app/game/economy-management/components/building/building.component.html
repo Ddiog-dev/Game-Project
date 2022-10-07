@@ -11,8 +11,8 @@
     Income type: {{building.tier.incomeType}}
   </mat-card-content>
 
-  Next Tiers:
-  <mat-card-actions style="display: flex;">
+  <span *ngIf="nextTierBuildings.length > 0">Next Tiers:</span>
+  <mat-card-actions *ngIf="nextTierBuildings.length > 0" style="display: flex;">
     <mat-card style="background:lightslategrey; border: solid black; margin-right: 3px" *ngFor="let nextTier of nextTierBuildings">
       <mat-card-subtitle> <strong> Tier {{building.level + 1}} </strong> </mat-card-subtitle>
       <mat-card-content>
