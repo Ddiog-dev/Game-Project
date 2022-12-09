@@ -11,6 +11,8 @@ import { EconomyScreenComponent } from './economy-management/components/economy-
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCardModule} from "@angular/material/card";
 import {GameToolbarComponent} from "./game-toolbar/game-toolbar.component";
+import { StaffScreenComponent } from './staff-management/components/staff-screen/staff-screen.component';
+import { StaffComponent } from './staff-management/components/staff/staff.component';
 
 
 
@@ -21,6 +23,8 @@ import {GameToolbarComponent} from "./game-toolbar/game-toolbar.component";
     MainScreenComponent,
     BuildingComponent,
     EconomyScreenComponent,
+    StaffScreenComponent,
+    StaffComponent,
   ],
     imports: [
         CommonModule,

@@ -4,6 +4,8 @@ import {concatMap, forkJoin, map, mergeMap, Observable} from "rxjs";
 import {BuildingType} from "../game/economy-management/models/building-type";
 import {StoreState} from "../redux-store/store-state/store-state";
 import {Building} from "../game/economy-management/models/building";
+import {CharacterType} from "../game/staff-management/models/character-type";
+import {Character} from "../game/staff-management/models/character";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,16 @@ export class BackEndService {
       this.getMine(),
       this.getPotionShop(),
     ]);
+  }
+
+  getAllCharacters(): Observable<Character[]> {
+    return forkJoin([
+      this.getKnight(),
+    ]);
+  }
+
+  getKnight(): Observable<Character>{
+    return this.httpClient.get<Character>(`http://localhost:8000/character/${CharacterType.KNIGHT}`);
   }
 
   saveState(storeState: StoreState){

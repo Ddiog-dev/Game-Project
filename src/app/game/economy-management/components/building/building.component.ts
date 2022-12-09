@@ -26,7 +26,9 @@ export class BuildingComponent implements OnInit {
   subscriptions: Subscription[]= [];
   currentGold: number = 0;
 
-  constructor(private store: Store<StoreState>, private buildingService: BuildingService) {}
+  constructor(private store: Store<StoreState>, private buildingService: BuildingService) {
+
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(this.store.select(goldAmount).subscribe(gold => this.currentGold = gold));
